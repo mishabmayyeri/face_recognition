@@ -86,7 +86,9 @@ class _SignupPageState extends State<SignupPage> {
 
   Future signUp() async {
     print('here');
-    var img = await MultipartFile.fromFile(image!.path);
+
+    var img = await MultipartFile.fromFile(image!.path,
+        filename: username.toString());
     FormData formData = FormData.fromMap({"user_image": img});
     final val = await dio.post(
         "https://37cf-2405-201-f003-68f0-3775-436c-bd6-f75.in.ngrok.io/api/adduser",
@@ -94,8 +96,8 @@ class _SignupPageState extends State<SignupPage> {
             {"user_image": await MultipartFile.fromFile(image!.path)}),
         queryParameters: {
           "password": "pass",
-          "user_name": username,
-          "email": email,
+          "user_name": username.text,
+          "email": email.text,
         });
     if (val.statusCode == 200 || val.statusCode == 201) {
       ScaffoldMessenger.of(context)
@@ -208,7 +210,7 @@ class _LoginPageState extends State<LoginPage> {
             {"user_image": await MultipartFile.fromFile(image!.path)}),
         queryParameters: {
           "password": "pass",
-          "user_name": username,
+          "user_name": username.text,
         });
     if (val.statusCode == 200 || val.statusCode == 201) {
       showDialog(
