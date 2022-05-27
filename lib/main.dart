@@ -89,7 +89,7 @@ class _SignupPageState extends State<SignupPage> {
     var img = await MultipartFile.fromFile(image!.path);
     FormData formData = FormData.fromMap({"user_image": img});
     final val = await dio.post(
-        "https://50e5-18-217-188-36.ngrok.io/api/adduser",
+        "https://37cf-2405-201-f003-68f0-3775-436c-bd6-f75.in.ngrok.io/api/adduser",
         data: FormData.fromMap(
             {"user_image": await MultipartFile.fromFile(image!.path)}),
         queryParameters: {
@@ -166,7 +166,17 @@ class _SignupPageState extends State<SignupPage> {
                         child: Text("Add User")),
                     // ElevatedButton(onPressed: () {}, child: Text("Select Image")),
                   ],
-                )
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Center(
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (builder) => LoginPage()));
+                        },
+                        child: Text('Go to Login')))
               ]),
         )),
       ),
@@ -191,7 +201,8 @@ class _LoginPageState extends State<LoginPage> {
     print('here');
     var img = await MultipartFile.fromFile(image!.path);
     FormData formData = FormData.fromMap({"user_image": img});
-    final val = await dio.post("https://50e5-18-217-188-36.ngrok.io/api/verify",
+    final val = await dio.post(
+        "https://37cf-2405-201-f003-68f0-3775-436c-bd6-f75.in.ngrok.io/api/verify",
         data: FormData.fromMap(
             {"user_image": await MultipartFile.fromFile(image!.path)}),
         queryParameters: {
@@ -281,6 +292,16 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: Text("Verify")),
                     // ElevatedButton(onPressed: () {}, child: Text("Select Image")),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Center(
+                        child: TextButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (builder) => LoginPage()));
+                            },
+                            child: Text('New user?')))
                   ],
                 )
               ]),
