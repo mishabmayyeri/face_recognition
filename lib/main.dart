@@ -173,8 +173,9 @@ class _SignupPageState extends State<SignupPage> {
                 Center(
                     child: TextButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (builder) => LoginPage()));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (builder) => LoginPage()));
                         },
                         child: Text('Go to Login')))
               ]),
@@ -292,18 +293,19 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: Text("Verify")),
                     // ElevatedButton(onPressed: () {}, child: Text("Select Image")),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Center(
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (builder) => LoginPage()));
-                            },
-                            child: Text('New user?')))
                   ],
-                )
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Center(
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (builder) => SignupPage()));
+                        },
+                        child: Text('New user?')))
               ]),
         )),
       ),
